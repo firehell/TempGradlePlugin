@@ -1,5 +1,6 @@
 package com.zz.plugin
 
+import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project;
 
@@ -10,5 +11,9 @@ public class ZzCoder implements Plugin<Project> {
         project.afterEvaluate {
             println("Hello ${extension.name}")
         }
+
+        def transform = new ZzCoderTransform()
+        def baseExtension = project.extensions.getByType(BaseExtension)
+        baseExtension.registerTransform(transform)
     }
 }
